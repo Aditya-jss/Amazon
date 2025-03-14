@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Entity Expansion & Restructure</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        /* Top Navigation Bar */
+        .top-nav {
+            background-color: #1c2b36;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+        
+        .top-nav .home-icon {
+            margin-right: 10px;
+        }
+        
+        .top-nav .view-source {
+            margin-left: auto;
+            background-color: #253444;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        
+        /* Banner Area */
+        .banner {
+            background: linear-gradient(135deg, #1c2b36 0%, #1c2b36 60%, #1c2b36 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
+        }
+        
+        .banner:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 40%, #d35400 100%);
+            transform: skewY(-5deg);
+            transform-origin: bottom left;
+            z-index: 0;
+        }
+        
+        .banner h1 {
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin: 20px auto 0;
+        }
+        
+        /* Navigation Menu */
+        .main-nav {
+            background-color: #1c2b36;
+            display: flex;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-item {
+            position: relative;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: normal;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-item:hover {
+            background-color: #253444;
+        }
+        
+        /* Dropdown Menus */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1c2b36;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+            left: 0;
+            top: 100%;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #253444;
+        }
+        
+        .nav-item:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Sidebar Table of Contents */
+        .content-container {
+            display: flex;
+            position: relative;
+        }
+        
+        .sidebar {
+            position: fixed;
+            left: -240px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px;
+            background-color: #1c2b36;
+            color: white;
+            height: auto;
+            transition: all 0.3s ease;
+            z-index: 100;
+            border-radius: 0 5px 5px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+            padding: 15px;
+        }
+        
+        .sidebar:hover, .sidebar:focus, .sidebar.active {
+            left: 0;
+        }
+        
+        .sidebar-toggle {
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #f39c12;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 60px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .toc-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f39c12;
+            padding-bottom: 5px;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-list li {
+            margin-bottom: 10px;
+        }
+        
+        .toc-list a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        
+        .toc-list a:hover {
+            color: #f39c12;
+        }
+        
+        .toc-sublist {
+            margin-left: 15px;
+            list-style: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            min-height: calc(100vh - 200px);
+            margin-left: 0;
+            width: 100%;
+            transition: margin-left 0.3s;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1c2b36;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <a href="#" class="home-icon">🏠</a>
+        <a href="#">/ Inter Company Funding</a>
+        <a href="#">/ GEER Document Steps</a>
+        <a href="#" class="view-source">View Source</a>
+    </div>
+
+    <!-- Banner with Title -->
+    <div class="banner">
+        <h1>Inter Company Funding</h1>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-item">
+            About Us
+            <div class="dropdown-content">
+                <a href="#">Company Info</a>
+                <a href="#">Mission & Vision</a>
+                <a href="#">Team</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            Project Types
+            <div class="dropdown-content">
+                <a href="#">Type 1</a>
+                <a href="#">Type 2</a>
+                <a href="#">Type 3</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            Project Intake
+            <div class="dropdown-content">
+                <a href="#">Form A</a>
+                <a href="#">Form B</a>
+                <a href="#">Form C</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            Stakeholder Resources
+            <div class="dropdown-content">
+                <a href="#">Resource 1</a>
+                <a href="#">Resource 2</a>
+                <a href="#">Resource 3</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            Project Sponsor Toolkit
+            <div class="dropdown-content">
+                <a href="#">Toolkit A</a>
+                <a href="#">Toolkit B</a>
+                <a href="#">Toolkit C</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            Key Stakeholders
+            <div class="dropdown-content">
+                <a href="#">Stakeholder 1</a>
+                <a href="#">Stakeholder 2</a>
+                <a href="#">Stakeholder 3</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            Team Resources
+            <div class="dropdown-content">
+                <a href="#">Resource 1</a>
+                <a href="#">Resource 2</a>
+                <a href="#">Resource 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Table of Contents -->
+    <div class="sidebar">
+        <button class="sidebar-toggle">≡</button>
+        <h3 class="toc-title">Table of Contents</h3>
+        <ul class="toc-list">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#requirements">Requirements</a>
+                <ul class="toc-sublist">
+                    <li><a href="#legal-requirements">Legal Requirements</a></li>
+                    <li><a href="#financial-requirements">Financial Requirements</a></li>
+                </ul>
+            </li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#documents">Documents</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#contacts">Key Contacts</a></li>
+        </ul>
+    </div>
+
+    <div class="content-container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2 id="overview">GEER Document Steps</h2>
+            <p>This page contains information about the Global Entity Expansion & Restructure documentation process.</p>
+            
+            <!-- Placeholder sections for the table of contents links -->
+            <section id="requirements" style="margin-top: 30px;">
+                <h3>Requirements</h3>
+                <p>Detailed information about requirements for the GEER process.</p>
+                
+                <h4 id="legal-requirements" style="margin-top: 20px;">Legal Requirements</h4>
+                <p>Information about legal documentation, compliance, and regulatory considerations.</p>
+                
+                <h4 id="financial-requirements" style="margin-top: 20px;">Financial Requirements</h4>
+                <p>Details about financial documentation, funding requirements, and budgetary considerations.</p>
+            </section>
+            
+            <section id="process" style="margin-top: 30px;">
+                <h3>Process</h3>
+                <p>Step-by-step overview of the GEER process.</p>
+            </section>
+            
+            <section id="documents" style="margin-top: 30px;">
+                <h3>Documents</h3>
+                <p>List of all required documents for the GEER process.</p>
+            </section>
+            
+            <section id="timeline" style="margin-top: 30px;">
+                <h3>Timeline</h3>
+                <p>Expected timeline for the GEER process from start to completion.</p>
+            </section>
+            
+            <section id="contacts" style="margin-top: 30px;">
+                <h3>Key Contacts</h3>
+                <p>Contact information for key personnel involved in the GEER process.</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Global Entity Expansion & Restructure</p>
+    </footer>
+
+    <script>
+        // Toggle sidebar functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleButton = document.querySelector('.sidebar-toggle');
+            
+            toggleButton.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+            
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!sidebar.contains(event.target) && !event.target.matches('.sidebar-toggle')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+            
+            // Add redirection functionality to all dropdown links
+            const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+            dropdownLinks.forEach(link => {
+                link.href = '#' + link.textContent.toLowerCase().replace(/\s+/g, '-');
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Navigating to: ' + link.textContent);
+                    // In a real application, you would use window.location.href = link.href or similar
+                });
+            });
+        });
+    </script>
+</body>
+</html>

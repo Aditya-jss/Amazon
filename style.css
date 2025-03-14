@@ -1,0 +1,119 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main Header Styles */
+.main-header {
+    background-color: #34495e; /* Dark Blue background color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-content h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+/* Subheader and Dropdown Styles */
+.subheaders {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: #2c3e50; /* Darker blue background for subheaders */
+}
+
+.subheader-item {
+    margin: 0 20px;
+    text-align: center;
+}
+
+.dropbtn {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 150px; /* Makes the button width fixed */
+}
+
+.dropbtn:hover {
+    background-color: #e67e22; /* Darker orange on hover */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-content a:hover {
+    background-color: #e67e22;
+}
+
+/* Show the dropdown when hovering */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Navigation Menu */
+.navigation ul {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.navigation ul li {
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+.navigation ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.navigation ul li a:hover {
+    color: #f39c12; /* Hover effect color for links */
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #34495e;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
